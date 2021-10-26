@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <record id="create_appointment_form" model="ir.ui.view">
+            <field name="name">school.appointment</field>
+            <field name="model">school.appointment</field>
+            <field name="arch" type="xml">
+                <form string="Create Appointment">
+                    <group>
+                        <field name="student_id"/>
+                        <field name="appointment_date"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="action_create_appointment" string="Create" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="school_appointments_action" model="ir.actions.act_window">
+            <field name="name">Appointment</field>
+            <field name="res_model" >school.appointment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="help" type="html">
+             <p class="oe_view_nocontent_create">Click Create to add a new Students Appointment record.</p>
+            </field>
+        </record>
+
+        <menuitem id="appointment" name="Appointment"/>
+        <menuitem id="appointment_menu" name="Appointment" parent="appointment"/>
+        <menuitem id="appointment_submenu" name="Appointments" parent="appointment_menu" action="school_appointments_action"/>
+    </data>
+</openerp>

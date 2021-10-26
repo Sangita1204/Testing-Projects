@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<openerp>
+    <data>
+        <report
+        id="report_student_card"
+        string="Student Card"
+        model="school.students"
+        report_type="qweb-html"
+        name="School.report_student"
+        file="School.report_student"
+        />
+
+    </data>
+</openerp>

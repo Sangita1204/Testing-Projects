@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<openerp>
+    <data>
+        <record id="school_students_action" model="ir.actions.act_window">
+        <field name="name">Schools</field>
+        <field name="res_model">school.students</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+             <p class="oe_view_nocontent_create">Click Create to add a new Students record.</p>
+        </field>
+        </record>
+
+         <record id="school_class_action" model="ir.actions.act_window">
+        <field name="name">Class</field>
+        <field name="res_model">school.class</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+             <p class="oe_view_nocontent_create">Click Create to add a new Class record.</p>
+        </field>
+        </record>
+
+         <record id="school_teachers_action" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="res_model">school.teachers</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+             <p class="oe_view_nocontent_create">Click Create to add a new teachers record.</p>
+        </field>
+        </record>
+
+        <record id="base_view_partner_form" model="ir.ui.view" >
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Children">
+                        <field name="students_id" colspan="4" nolabel="1"/>
+<!--                        <field name="name"/>-->
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+         <record id="school_students_tree_view" model="ir.ui.view">
+            <field name="name">school.students.tree.view</field>
+
+            <field name="model">school.students</field>
+            <field name="arch" type="xml">
+                <tree string="Students">
+
+                    <field name="name"/>
+                    <field name="birthdate"/>
+                    <field name="class_id"/>
+                    <field name="teachers_id"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="school_students_form_view" model="ir.ui.view">
+            <field name="name">school.students.form.view</field>
+            <field name="view_type">form</field>
+            <field name="model">school.students</field>
+            <field name="arch" type="xml">
+                <form string="Students">
+                    <header>
+                        <button name="%(School.create_appointment_wizard)d" type="action" string="Create Appointment" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                     <group>
+                    <field name="name"/>
+                     <field name="image" widget='image'/>
+                    <field name="birthdate"/>
+                    <field name="class_id"/>
+                    <field name="teachers_id"/>
+                         <field name="res_partner_id" domain="[('customer', '=', True)]"/>
+                    <field name="subjects_id" widget="many2many_tags"/>
+                    <notebook colspan="4">
+                        <page string="Student History">
+                          <field name="history" nolabel="1" placeholder="Please enter your Student's detail"/>
+                        </page>
+                        <page string="Student Activities">
+                          <field name="activity" nolabel="1" placeholder="Please enter your Student's activities"/>
+                        </page>
+                    </notebook>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+         <record id="school_teachers_form_view" model="ir.ui.view">
+            <field name="name">school.teachers.form.view</field>
+            <field name="view_type">form</field>
+            <field name="model">school.teachers</field>
+            <field name="arch" type="xml">
+                <form string="Teachers">
+                    <sheet>
+                     <group>
+                    <field name="name"/>
+
+                    <notebook colspan="4">
+                        <page string="Class">
+                          <field name="class_id" nolabel="1" />
+                        </page>
+
+                    </notebook>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <menuitem id="school" name="School" />
+        <menuitem id="school_menu" name="School" parent="school" />
+        <menuitem id="school_students_menu" name="Students" parent="school_menu"
+        action="school_students_action"/>
+
+        <menuitem id="school_class_menu" name="Class" parent="school_menu"
+        action="school_class_action"/>
+
+        <menuitem id="school_teachers_menu" name="Teachers" parent="school_menu"
+        action="school_teachers_action"/>
+
+    </data>
+</openerp>

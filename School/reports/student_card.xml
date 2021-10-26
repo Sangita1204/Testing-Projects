@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<openerp>
+    <data>
+<!--        <template id="report_student_cards">-->
+<!--            <t t-call="report.html_container">-->
+<!--                <t t-foreach="docs" t-as="doc">-->
+<!--                    <h2>Student Card</h2>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </template>-->
+
+        <template id="report_student">
+            <t t-call="report.external_layout">
+               <t t-foreach="docs" t-as="doc">
+                   <h2>Student Card</h2>
+                   <t t-esc="doc.name"/>
+                   <t t-esc="doc.birthdate"/>
+                   <t t-esc="doc.class_id.name"/>
+                   <t t-esc="doc.teachers_id.name"/>
+               </t>
+            </t>
+        </template>
+
+
+    </data>
+</openerp>
